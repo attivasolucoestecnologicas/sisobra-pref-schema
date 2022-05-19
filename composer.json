@@ -1,0 +1,17 @@
+{
+    "name": "ativa/sisobra",
+    "description": "Uma PHP biblioteca para geração XML no layout SISOBRA",
+    "license": "MIT",
+    "keywords": [
+        "xml",
+        "sisobra"
+    ],
+    "autoload": {
+        "psr-4": {
+            "Attiva\\SisObraXml\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">= 5.4"
+    }
+}

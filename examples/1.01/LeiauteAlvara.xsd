@@ -1,0 +1,574 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--Created with Liquid XML Studio - FREE Community Edition 7.1.6.1440 (http://www.liquid-technologies.com)-->
+<xs:schema xmlns:ds="http://www.w3.org/2000/09/xmldsig#" elementFormDefault="qualified"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:import schemaLocation="xmldsig-core-schema_v1.01.xsd" namespace="http://www.w3.org/2000/09/xmldsig#"/>
+    <xs:include schemaLocation="AreaComplementar.xsd"/>
+    <xs:include schemaLocation="AreaPrincipal.xsd"/>
+    <xs:complexType name="TAlvara">
+        <xs:sequence>
+            <xs:element name="infAlvara">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="numeroAlvara">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                    <xs:minLength value="1"/>
+                                    <xs:maxLength value="20"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:element>
+                        <xs:element minOccurs="0" maxOccurs="1" name="numeroProtocoloAnterior">
+                            <xs:annotation>
+                                <xs:documentation>
+                                    Número do protocolo anterior:
+                                    O preenchimento será obrigatório na operações de retificação e prorrogação
+                                </xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                    <xs:length value="26"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:element>
+                        <xs:element name="nomeObra">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                    <xs:minLength value="1"/>
+                                    <xs:maxLength value="100"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:element>
+                        <xs:element name="dataAlvara" type="xs:date">
+                            <xs:annotation>
+                                <xs:documentation>Tipo data AAAA-MM-DD</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="dataInicioObra" type="xs:date">
+                            <xs:annotation>
+                                <xs:documentation>Tipo data AAAA-MM-DD</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element minOccurs="0" maxOccurs="1" name="dataFinalObra" type="xs:date">
+                            <xs:annotation>
+                                <xs:documentation>Tipo data AAAA-MM-DD</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="tipoAlvara">
+                            <xs:annotation>
+                                <xs:documentation>
+                                    Tipo de alvará:
+
+                                    - Inicial
+                                    - Retificado
+                                </xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                    <xs:whiteSpace value="preserve"/>
+                                    <xs:enumeration value="inicial"/>
+                                    <xs:enumeration value="retificado"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:element>
+                        <xs:element name="responsavelExecObra">
+                            <xs:complexType>
+                                <xs:annotation>
+                                    <xs:documentation>
+                                        Responsável pela Execução da Obra:
+
+                                        - proprietário do imóvel
+                                        - dono da obra
+                                        - incorporador de construção civil
+                                        - empresa construtora
+                                        - empresa líder do consórcio
+                                        - consórcio
+                                        - condomínio
+                                        - construção em nome coletivo
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:choice>
+                                    <xs:element maxOccurs="1" name="proprietario_do_imovel">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:string">
+                                                <xs:length value="0"/>
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:element>
+                                    <xs:element maxOccurs="1" name="dono_da_obra">
+                                        <xs:complexType>
+                                            <xs:choice>
+                                                <xs:element maxOccurs="1" name="cnpj">
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="xs:string">
+                                                            <xs:whiteSpace value="preserve"/>
+                                                            <xs:pattern value="[0-9]{14}"/>
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:element>
+                                                <xs:element maxOccurs="1" name="cpf">
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="xs:string">
+                                                            <xs:whiteSpace value="preserve"/>
+                                                            <xs:pattern value="[0-9]{11}"/>
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:element>
+                                            </xs:choice>
+                                        </xs:complexType>
+                                    </xs:element>
+                                    <xs:element maxOccurs="1" name="incorporador_construcao_civil">
+                                        <xs:complexType>
+                                            <xs:choice>
+                                                <xs:element maxOccurs="1" name="cnpj">
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="xs:string">
+                                                            <xs:whiteSpace value="preserve"/>
+                                                            <xs:pattern value="[0-9]{14}"/>
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:element>
+                                                <xs:element maxOccurs="1" name="cpf">
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="xs:string">
+                                                            <xs:whiteSpace value="preserve"/>
+                                                            <xs:pattern value="[0-9]{11}"/>
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:element>
+                                            </xs:choice>
+                                        </xs:complexType>
+                                    </xs:element>
+                                    <xs:element maxOccurs="1" name="empresa_construtora">
+                                        <xs:complexType>
+                                            <xs:sequence>
+                                                <xs:element name="cnpj">
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="xs:string">
+                                                            <xs:whiteSpace value="preserve"/>
+                                                            <xs:pattern value="[0-9]{14}"/>
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:element>
+                                            </xs:sequence>
+                                        </xs:complexType>
+                                    </xs:element>
+                                    <xs:element maxOccurs="1" name="empresa_lider_consorcio">
+                                        <xs:complexType>
+                                            <xs:sequence>
+                                                <xs:element maxOccurs="1" name="cnpjConsorcio">
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="xs:string">
+                                                            <xs:whiteSpace value="preserve"/>
+                                                            <xs:pattern value="[0-9]{14}"/>
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:element>
+                                                <xs:element maxOccurs="1" name="cnpjEmpresaLiderConsorcio">
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="xs:string">
+                                                            <xs:whiteSpace value="preserve"/>
+                                                            <xs:pattern value="[0-9]{14}"/>
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:element>
+                                            </xs:sequence>
+                                        </xs:complexType>
+                                    </xs:element>
+                                    <xs:element maxOccurs="1" name="consorcio">
+                                        <xs:complexType>
+                                            <xs:sequence>
+                                                <xs:element maxOccurs="1" name="cnpjConsorcio">
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="xs:string">
+                                                            <xs:whiteSpace value="preserve"/>
+                                                            <xs:pattern value="[0-9]{14}"/>
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:element>
+                                                <xs:element maxOccurs="1" name="cnpjEmpresaLiderConsorcio">
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="xs:string">
+                                                            <xs:whiteSpace value="preserve"/>
+                                                            <xs:pattern value="[0-9]{14}"/>
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:element>
+                                            </xs:sequence>
+                                        </xs:complexType>
+                                    </xs:element>
+                                    <xs:element maxOccurs="1" name="construcao_nome_coletivo">
+                                        <xs:complexType>
+                                            <xs:sequence>
+                                                <xs:choice>
+                                                    <xs:element name="cpfResponsavelPrincipal">
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                                <xs:whiteSpace value="preserve"/>
+                                                                <xs:pattern value="[0-9]{11}"/>
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="cnpjResponsavelPrincipal">
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                                <xs:whiteSpace value="preserve"/>
+                                                                <xs:pattern value="[0-9]{14}"/>
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                </xs:choice>
+                                                <xs:element minOccurs="0" maxOccurs="10" name="cnpj">
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="xs:string">
+                                                            <xs:whiteSpace value="preserve"/>
+                                                            <xs:pattern value="[0-9]{14}"/>
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:element>
+                                                <xs:element minOccurs="0" maxOccurs="10" name="cpf">
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="xs:string">
+                                                            <xs:whiteSpace value="preserve"/>
+                                                            <xs:pattern value="[0-9]{11}"/>
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:element>
+                                            </xs:sequence>
+                                        </xs:complexType>
+                                    </xs:element>
+                                </xs:choice>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="enderecoObra">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="cep">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:string">
+                                                <xs:whiteSpace value="preserve"/>
+                                                <xs:pattern value="[0-9]{8}"/>
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:element>
+                                    <xs:element minOccurs="1" maxOccurs="1" name="tipoLogradouro">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:string">
+                                                <xs:minLength value="1"/>
+                                                <xs:maxLength value="15"/>
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:element>
+                                    <xs:element minOccurs="1" maxOccurs="1" name="logradouro">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:string">
+                                                <xs:minLength value="1"/>
+                                                <xs:maxLength value="60"/>
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:element>
+                                    <xs:element minOccurs="1" maxOccurs="1" name="numero">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:string">
+                                                <xs:minLength value="1"/>
+                                                <xs:maxLength value="60"/>
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:element>
+                                    <xs:element minOccurs="0" maxOccurs="1" name="complemento">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:string">
+                                                <xs:minLength value="1"/>
+                                                <xs:maxLength value="60"/>
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:element>
+                                    <xs:element minOccurs="1" maxOccurs="1" name="bairro">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:string">
+                                                <xs:minLength value="1"/>
+                                                <xs:maxLength value="60"/>
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="unidadeMedida">
+                            <xs:annotation>
+                                <xs:documentation>
+                                    Unidade de medida:
+                                    1 - M²
+                                    2 - M³
+                                    3 - KM
+                                    4 - KW
+                                    5 - KVA
+                                    6 - Outros
+                                </xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                    <xs:whiteSpace value="preserve"/>
+                                    <xs:enumeration value="M2"/>
+                                    <xs:enumeration value="M3"/>
+                                    <xs:enumeration value="KM"/>
+                                    <xs:enumeration value="KW"/>
+                                    <xs:enumeration value="KVA"/>
+                                    <xs:enumeration value="Outros"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:element>
+                        <xs:choice>
+                            <xs:element maxOccurs="1" name="valorUnidadeMedida">
+                                <xs:simpleType>
+                                    <xs:annotation>
+                                        <xs:documentation>15 dígitos, sendo 13 de corpo e 2 decimais</xs:documentation>
+                                    </xs:annotation>
+                                    <xs:restriction base="xs:string">
+                                        <xs:whiteSpace value="preserve"/>
+                                        <xs:pattern value="0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element maxOccurs="1" name="area">
+                                <xs:complexType>
+                                    <xs:choice>
+                                        <xs:sequence>
+                                            <xs:element minOccurs="1" maxOccurs="100" name="areaPrincipal"
+                                                        type="TAreaPrincipal"/>
+                                            <xs:element minOccurs="0" maxOccurs="100" name="areaComplementar"
+                                                        type="TAreaComplementar"/>
+                                        </xs:sequence>
+                                        <xs:sequence>
+                                            <xs:element minOccurs="1" maxOccurs="100" name="areaComplementar"
+                                                        type="TAreaComplementar"/>
+                                        </xs:sequence>
+                                    </xs:choice>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:choice>
+                        <xs:element name="proprietarioObra">
+                            <xs:annotation>
+                                <xs:documentation>Proprietário da obra</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:choice>
+                                        <xs:element name="cpf">
+                                            <xs:simpleType>
+                                                <xs:annotation>
+                                                    <xs:documentation>Número do CPF</xs:documentation>
+                                                </xs:annotation>
+                                                <xs:restriction base="xs:string">
+                                                    <xs:whiteSpace value="preserve"/>
+                                                    <xs:pattern value="[0-9]{11}"/>
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                        <xs:element name="cnpj">
+                                            <xs:simpleType>
+                                                <xs:annotation>
+                                                    <xs:documentation>Número do CNPJ</xs:documentation>
+                                                </xs:annotation>
+                                                <xs:restriction base="xs:string">
+                                                    <xs:whiteSpace value="preserve"/>
+                                                    <xs:pattern value="[0-9]{14}"/>
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                    </xs:choice>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element minOccurs="0" maxOccurs="1" name="infoAdicionais">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element minOccurs="0" maxOccurs="1" name="situacao">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:string">
+                                                <xs:minLength value="1"/>
+                                                <xs:maxLength value="80"/>
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:element>
+                                    <xs:element minOccurs="0" maxOccurs="1" name="classe">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:string">
+                                                <xs:minLength value="1"/>
+                                                <xs:maxLength value="30"/>
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:element>
+                                    <xs:element minOccurs="0" maxOccurs="1" name="numeroProcesso">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:string">
+                                                <xs:minLength value="1"/>
+                                                <xs:maxLength value="20"/>
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:element>
+                                    <xs:element minOccurs="0" maxOccurs="1" name="responsavelTecnico">
+                                        <xs:complexType>
+                                            <xs:choice>
+                                                <xs:element name="engenheiro">
+                                                    <xs:complexType>
+                                                        <xs:sequence>
+                                                            <xs:element name="nome">
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:minLength value="3"/>
+                                                                        <xs:maxLength value="60"/>
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:element>
+                                                            <xs:element name="crea">
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:minLength value="1"/>
+                                                                        <xs:maxLength value="30"/>
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:element>
+                                                            <xs:element name="art">
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:minLength value="1"/>
+                                                                        <xs:maxLength value="30"/>
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:element>
+                                                        </xs:sequence>
+                                                    </xs:complexType>
+                                                </xs:element>
+                                                <xs:element name="arquiteto">
+                                                    <xs:complexType>
+                                                        <xs:sequence>
+                                                            <xs:element name="nome">
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:minLength value="3"/>
+                                                                        <xs:maxLength value="60"/>
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:element>
+                                                            <xs:element name="cau">
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:minLength value="1"/>
+                                                                        <xs:maxLength value="30"/>
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:element>
+                                                            <xs:element name="rrt">
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:minLength value="1"/>
+                                                                        <xs:maxLength value="30"/>
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:element>
+                                                        </xs:sequence>
+                                                    </xs:complexType>
+                                                </xs:element>
+                                            </xs:choice>
+                                        </xs:complexType>
+                                    </xs:element>
+                                    <xs:element minOccurs="0" maxOccurs="1" name="responsavelProjeto">
+                                        <xs:complexType>
+                                            <xs:choice>
+                                                <xs:element name="engenheiro">
+                                                    <xs:complexType>
+                                                        <xs:sequence>
+                                                            <xs:element name="nome">
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:minLength value="3"/>
+                                                                        <xs:maxLength value="60"/>
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:element>
+                                                            <xs:element name="crea">
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:minLength value="1"/>
+                                                                        <xs:maxLength value="30"/>
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:element>
+                                                            <xs:element name="art">
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:minLength value="1"/>
+                                                                        <xs:maxLength value="30"/>
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:element>
+                                                        </xs:sequence>
+                                                    </xs:complexType>
+                                                </xs:element>
+                                                <xs:element name="arquiteto">
+                                                    <xs:complexType>
+                                                        <xs:sequence>
+                                                            <xs:element name="nome">
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:minLength value="3"/>
+                                                                        <xs:maxLength value="60"/>
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:element>
+                                                            <xs:element name="cau">
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:minLength value="1"/>
+                                                                        <xs:maxLength value="30"/>
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:element>
+                                                            <xs:element name="rrt">
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:minLength value="1"/>
+                                                                        <xs:maxLength value="30"/>
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:element>
+                                                        </xs:sequence>
+                                                    </xs:complexType>
+                                                </xs:element>
+                                            </xs:choice>
+                                        </xs:complexType>
+                                    </xs:element>
+                                    <xs:element minOccurs="0" maxOccurs="1" name="especificacao">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:string">
+                                                <xs:minLength value="1"/>
+                                                <xs:maxLength value="200"/>
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:element>
+                                    <xs:element minOccurs="0" maxOccurs="1" name="observacao">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:string">
+                                                <xs:minLength value="1"/>
+                                                <xs:maxLength value="300"/>
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                    <xs:attribute name="Id" use="required">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:pattern value="id[0-9]{7}"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:attribute>
+                </xs:complexType>
+            </xs:element>
+            <xs:element ref="ds:Signature"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

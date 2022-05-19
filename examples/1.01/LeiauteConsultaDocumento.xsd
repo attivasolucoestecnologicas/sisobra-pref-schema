@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--Created with Liquid XML Studio - FREE Community Edition 7.1.6.1440 (http://www.liquid-technologies.com)-->
+<xs:schema xmlns:ds="http://www.w3.org/2000/09/xmldsig#" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="ConsultaDocumento">
+	<xs:complexType>
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="documento">
+        <xs:annotation>
+          <xs:documentation>
+				Documentos:
+				- Alvará
+				- Habite-se
+		  </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:whiteSpace value="preserve" />
+            <xs:enumeration value="alvara" />
+            <xs:enumeration value="habitese" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="numeroDocumento">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1" />
+            <xs:maxLength value="20" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="ano">
+        <xs:simpleType>
+          <xs:restriction base="xs:positiveInteger">
+            <xs:totalDigits value="4" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="versao" use="required">
+      <xs:annotation>
+        <xs:documentation>Versão do schema</xs:documentation>
+      </xs:annotation>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:whiteSpace value="preserve" />
+          <xs:pattern value="1\.01" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:complexType>
+  </xs:element>
+</xs:schema>

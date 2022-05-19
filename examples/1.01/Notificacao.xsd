@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--Created with Liquid XML Studio - FREE Community Edition 7.1.6.1440 (http://www.liquid-technologies.com)-->
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="TNotificacao">
+    <xs:sequence>
+            <xs:element name="codigoNotificacao" type="xs:integer" />
+            <xs:element name="ano" type="xs:integer" />
+            <xs:element name="mes">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:whiteSpace value="preserve" />
+                  <xs:enumeration value="01" />
+                  <xs:enumeration value="02" />
+                  <xs:enumeration value="03" />
+                  <xs:enumeration value="04" />
+                  <xs:enumeration value="05" />
+                  <xs:enumeration value="06" />
+                  <xs:enumeration value="07" />
+                  <xs:enumeration value="08" />
+                  <xs:enumeration value="09" />
+                  <xs:enumeration value="10" />
+                  <xs:enumeration value="11" />
+                  <xs:enumeration value="12" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element name="dataPrazoFinal" type="xs:date">
+              <xs:annotation>
+                <xs:documentation>Prazo Final: até o décimo dia do mês subsequente. Tipo data AAAA-MM-DD</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="dataEntrega" type="xs:date">
+              <xs:annotation>
+                <xs:documentation> Tipo data AAAA-MM-DD</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="dataVencimento" type="xs:date">
+              <xs:annotation>
+                <xs:documentation> Tipo data AAAA-MM-DD</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="valorNotificacao" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+</xs:schema>

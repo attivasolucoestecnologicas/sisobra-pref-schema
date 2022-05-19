@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--Created with Liquid XML Studio - FREE Community Edition 7.1.6.1440 (http://www.liquid-technologies.com)-->
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:include schemaLocation="Notificacao.xsd" />
+  <xs:element name="retSisobraPref">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="50" name="Alvara">
+          <xs:annotation>
+            <xs:documentation>Alvará</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="codRetorno" type="xs:string" />
+              <xs:element name="descricao" type="xs:string" />
+              <xs:element minOccurs="0" maxOccurs="1" name="protocolo" type="xs:string" />
+              <xs:element name="numeroAlvara" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element minOccurs="0" maxOccurs="50" name="Habitese">
+          <xs:annotation>
+            <xs:documentation>Habitese</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="codRetorno" type="xs:string" />
+              <xs:element name="descricao" type="xs:string" />
+              <xs:element minOccurs="0" maxOccurs="1" name="protocolo" type="xs:string" />
+              <xs:element name="numeroHabitese" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element minOccurs="0" maxOccurs="10" name="AlteraSituacao">
+          <xs:annotation>
+            <xs:documentation>Altera Situação</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="tipoDocumento" type="xs:string" />
+			  <xs:element name="numeroDocumento" type="xs:string" />
+              <xs:element name="codRetorno" type="xs:string" />
+              <xs:element name="descricao" type="xs:string" />
+              <xs:element minOccurs="0" maxOccurs="1" name="protocolo" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element minOccurs="0" maxOccurs="1" name="codRetorno" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="descricao" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="Notificacao" type="TNotificacao" />
+      </xs:sequence>
+      <xs:attribute name="versao" use="required">
+        <xs:annotation>
+          <xs:documentation>Versão do leiaute do lote</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:whiteSpace value="preserve" />
+            <xs:pattern value="1\.01" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

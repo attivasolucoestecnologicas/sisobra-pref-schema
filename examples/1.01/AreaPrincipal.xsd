@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--Created with Liquid XML Studio - FREE Community Edition 7.1.6.1440 (http://www.liquid-technologies.com)-->
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="TAreaPrincipal">
+    <xs:sequence>
+      <xs:element name="categoria">
+        <xs:annotation>
+          <xs:documentation>
+								As opções de categoria:
+								1 - Obra nova
+								2 - Acréscimo
+								3 - Reforma
+								4 - Demolição
+								5 - Existente
+							</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:whiteSpace value="preserve" />
+            <xs:enumeration value="obra_nova" />
+            <xs:enumeration value="acrescimo" />
+            <xs:enumeration value="reforma" />
+            <xs:enumeration value="demolicao" />
+            <xs:enumeration value="existente" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="destinacao">
+        <xs:annotation>
+          <xs:documentation>
+								As opções de destinação:
+								1 - Residencial Unifamiliar
+								2 - Residencial Multifamiliar
+								3 - Comercial Salas e Lojas
+								4 - Edifício de Garagens
+								5 - Galpão Industrial
+								6 - Casa Popular
+								7 - Conjunto Habitacional Popular.
+							</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:whiteSpace value="preserve" />
+            <xs:enumeration value="residencial_unifamiliar" />
+            <xs:enumeration value="residencial_multifamiliar" />
+            <xs:enumeration value="comercial_salas_lojas" />
+            <xs:enumeration value="edificio_garagens" />
+            <xs:enumeration value="galpao_industrial" />
+            <xs:enumeration value="casa_popular" />
+            <xs:enumeration value="conjunto_habitacional_popular" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="tipoObra">
+        <xs:annotation>
+          <xs:documentation>
+								As opções de tipo de obra:
+								1 - Alvenaria
+								2 - Madeira
+								3 - Mista
+							</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:whiteSpace value="preserve" />
+            <xs:enumeration value="alvenaria" />
+            <xs:enumeration value="madeira" />
+            <xs:enumeration value="mista" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+	
+		  <xs:element minOccurs="0" maxOccurs="1" name="qtd_total_unidades_bloco">
+              <xs:simpleType>
+                <xs:restriction base="xs:integer">
+                  <xs:minInclusive value="1" />
+                  <xs:maxInclusive value="100000" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+		
+      <xs:element name="area">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>15 dígitos, sendo 13 de corpo e 2 decimais</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:whiteSpace value="preserve" />
+            <xs:pattern value="0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

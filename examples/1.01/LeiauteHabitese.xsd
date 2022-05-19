@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--Created with Liquid XML Studio - FREE Community Edition 7.1.6.1440 (http://www.liquid-technologies.com)-->
+<xs:schema xmlns:ds="http://www.w3.org/2000/09/xmldsig#" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="xmldsig-core-schema_v1.01.xsd" namespace="http://www.w3.org/2000/09/xmldsig#" />
+  <xs:include schemaLocation="AreaComplementar.xsd" />
+  <xs:include schemaLocation="AreaPrincipal.xsd" />
+  <xs:complexType name="THabitese">
+    <xs:sequence>
+      <xs:element name="infHabitese">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="numeroHabitese">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:minLength value="1" />
+                  <xs:maxLength value="20" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element name="dataHabitese" type="xs:date">
+              <xs:annotation>
+                <xs:documentation> Tipo data AAAA-MM-DD</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" maxOccurs="1" name="dataFinalObra" type="xs:date">
+              <xs:annotation>
+                <xs:documentation> Tipo data AAAA-MM-DD</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="tipoHabitese">
+              <xs:annotation>
+                <xs:documentation>
+						Tipo de habite-se:
+						
+						Total
+						Parcial
+                    </xs:documentation>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:whiteSpace value="preserve" />
+                  <xs:enumeration value="total" />
+                  <xs:enumeration value="parcial" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" maxOccurs="1" name="observacao">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:minLength value="1" />
+                  <xs:maxLength value="100" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element name="unidadeMedida">
+              <xs:annotation>
+                <xs:documentation>
+								Unidade de medida:
+								M²
+								M³
+								KM
+								KW
+								KWA
+								Outros
+							</xs:documentation>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:whiteSpace value="preserve" />
+                  <xs:enumeration value="M2" />
+                  <xs:enumeration value="M3" />
+                  <xs:enumeration value="KM" />
+                  <xs:enumeration value="KW" />
+                  <xs:enumeration value="KWA" />
+                  <xs:enumeration value="Outros" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:choice>
+              <xs:element name="valorUnidadeMedida">
+                <xs:simpleType>
+                  <xs:annotation>
+                    <xs:documentation>15 dígitos, sendo 13 de corpo e 2 decimais</xs:documentation>
+                  </xs:annotation>
+                  <xs:restriction base="xs:string">
+                    <xs:whiteSpace value="preserve" />
+                    <xs:pattern value="0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element maxOccurs="1" name="area">
+                <xs:complexType>
+                  <xs:choice>
+                    <xs:sequence>
+                      <xs:element minOccurs="1" maxOccurs="100" name="areaPrincipal" type="TAreaPrincipal" />
+                      <xs:element minOccurs="0" maxOccurs="100" name="areaComplementar" type="TAreaComplementar" />
+                    </xs:sequence>
+                    <xs:sequence>
+                      <xs:element minOccurs="1" maxOccurs="100" name="areaComplementar" type="TAreaComplementar" />
+                    </xs:sequence>
+                  </xs:choice>
+                </xs:complexType>
+              </xs:element>
+            </xs:choice>
+            <xs:element minOccurs="0" maxOccurs="1" name="qtd_total_unidades_bloco">
+              <xs:simpleType>
+                <xs:restriction base="xs:integer">
+                  <xs:minInclusive value="1" />
+                  <xs:maxInclusive value="100000" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element name="numeroAlvara">
+              <xs:annotation>
+                <xs:documentation>Número do alvará vinculado</xs:documentation>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:minLength value="1" />
+                  <xs:maxLength value="20" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element name="dataAlvara" type="xs:date">
+              <xs:annotation>
+                <xs:documentation> Data do alvará vinculado. Tipo data AAAA-MM-DD</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+          <xs:attribute name="Id" use="required">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:pattern value="id[0-9]{7}" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+        </xs:complexType>
+      </xs:element>
+      <xs:element ref="ds:Signature" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

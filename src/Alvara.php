@@ -58,7 +58,7 @@ class Alvara extends Base
         $alvara->appendChild($propObra);
         $alvara->appendChild($infoAdicionais);
 
-        $this->xml->save('Alvara.xml');
+        $this->xml->save("{$this->fileName}.xml");
     }
 
     private function responsavelObra(\DOMNode $node, $resp, $value)

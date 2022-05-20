@@ -15,7 +15,7 @@ $std->endereco->complemento = 'sem comp';
 $std->endereco->bairro = 'centro';
 
 $std->unidadeMedida = 'M2';
-$std->unidadeMedida->valorUnidadeMedida = '12595.00'; // FLOAT
+$std->unidadeMedida['valorUnidadeMedida'] = '12595.00'; // FLOAT
 
 
 $classe = new Alvara($std);

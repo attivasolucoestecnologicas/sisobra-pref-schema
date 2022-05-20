@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sisobraPref>
+    <versao>1.0.1</versao>
+    <infAlvara>
+        <numeroAlvara/>
+        <numeroProtocoloAnterior/>
+        <nomeObra/>
+        <dataAlvara/>
+        <dataInicioObra/>
+        <dataFinalObra/>
+        <tipoAlvara/>
+        <responsavelExecObra>
+            <cnpj>11111111111222</cnpj>
+        </responsavelExecObra>
+        <enderecoObra>
+            <cep>55555555</cep>
+            <tipoLogradouro>rua</tipoLogradouro>
+            <logradouro>maria</logradouro>
+            <numero>55</numero>
+            <complemento>sem comp</complemento>
+            <bairro>centro</bairro>
+        </enderecoObra>
+        <unidadeMedida/>
+        <valorUnidadeMedida/>
+        <area/>
+        <proprietarioObra/>
+        <infoAdicionais/>
+    </infAlvara>
+</sisobraPref>

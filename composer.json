@@ -9,7 +9,10 @@
     "autoload": {
         "psr-4": {
             "Attiva\\SisObraXml\\": "src/"
-        }
+        },
+        "files": [
+            "src/Helpers/helpers.php"
+        ]
     },
     "require": {
         "php": ">= 5.4"

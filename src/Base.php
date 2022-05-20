@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Attiva\SisObraXML;
+namespace Attiva\SisObraXml;
 
 
 abstract class Base
@@ -9,7 +9,7 @@ abstract class Base
     public $xml;
     protected $versao; // Versão do lote
 
-    public function __construct($versao)
+    public function __construct()
     {
         $this->xml = new \DOMDocument('1.0', 'UTF-8');
     }

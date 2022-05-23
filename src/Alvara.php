@@ -32,12 +32,21 @@ class Alvara extends Base
         $dtFinalObra = $this->xml->createElement('dataFinalObra');
         $tpAlvara = $this->xml->createElement('tipoAlvara');
 
-//        $endObra = $this->xml->createElement('enderecoObra');
-        $undMedida = $this->xml->createElement('unidadeMedida');
-
         // SELECT
-        $valUndMedida = $this->xml->createElement('valorUnidadeMedida');
-        $area = $this->xml->createElement('area');
+
+        $valUndMedida = null;
+        $area = null;
+
+        $undMedida = $this->xml->createElement('unidadeMedida', $this->std->unidadeMedida->valor);
+        if ($this->std->unidadeMedida->select == 'valorUnidadeMedida') {
+            $valUndMedida = $this->xml->createElement('valorUnidadeMedida', $this->std->unidadeMedida->valor_unidade_medida);
+        } elseif ($this->std->unidadeMedida->select == 'area') {
+            $area = $this->xml->createElement('area');
+            $areaPrincipal = $this->xml->createElement('areaPrincipal', $this->std->unidadeMedida->area_principal);
+            $areaComplementar = $this->xml->createElement('areaComplementar', $this->std->unidadeMedida->area_complementar);
+            $area->appendChild($areaPrincipal);
+            $area->appendChild($areaComplementar);
+        }
         // FIM SELECT
 
         $propObra = $this->xml->createElement('proprietarioObra');
@@ -53,8 +62,17 @@ class Alvara extends Base
         $this->responsavelObra($alvara, 'dono_da_obra', '11111111111222');
         $this->endObra($alvara, $this->std->endereco);
         $alvara->appendChild($undMedida);
-        $alvara->appendChild($valUndMedida);
-        $alvara->appendChild($area);
+
+        if ($this->std->unidadeMedida->select == 'valorUnidadeMedida') {
+            $alvara->appendChild($valUndMedida);
+        } elseif ($this->std->unidadeMedida->select == 'area') {
+            $alvara->appendChild($area);
+        }
+
+        print_r(isset($this->std->proprietarioObra->cpf));
+        die();
+
+
         $alvara->appendChild($propObra);
         $alvara->appendChild($infoAdicionais);
 

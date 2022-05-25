@@ -24,13 +24,13 @@ class Alvara extends Base
         $alvara = $this->xml->createElement('infAlvara');
         $pai->appendChild($alvara);
 
-        $nAlvara = $this->xml->createElement('numeroAlvara');
-        $nProtocoloAnt = $this->xml->createElement('numeroProtocoloAnterior');
-        $nomeObra = $this->xml->createElement('nomeObra');
-        $dtAlvara = $this->xml->createElement('dataAlvara');
-        $dtInicioObra = $this->xml->createElement('dataInicioObra');
-        $dtFinalObra = $this->xml->createElement('dataFinalObra');
-        $tpAlvara = $this->xml->createElement('tipoAlvara');
+        $nAlvara = $this->xml->createElement('numeroAlvara', $this->std->numeroAlvara);
+        $nProtocoloAnt = $this->xml->createElement('numeroProtocoloAnterior', $this->std->numeroProtocoloAnterior);
+        $nomeObra = $this->xml->createElement('nomeObra', $this->std->nomeObra);
+        $dtAlvara = $this->xml->createElement('dataAlvara', $this->std->dataAlvara);
+        $dtInicioObra = $this->xml->createElement('dataInicioObra', $this->std->dataInicioObra);
+        $dtFinalObra = $this->xml->createElement('dataFinalObra', $this->std->dataFinalObra);
+        $tpAlvara = $this->xml->createElement('tipoAlvara', $this->std->tipoAlvara);
 
         // SELECT
 
@@ -69,11 +69,18 @@ class Alvara extends Base
             $alvara->appendChild($area);
         }
 
-        print_r(isset($this->std->proprietarioObra->cpf));
-        die();
-
+        if (isset($this->std->proprietarioObra->cpf)) {
+            $doc = $this->xml->createElement('cpf', $this->std->proprietarioObra->cpf);
+            $propObra->appendChild($doc);
+        } elseif (isset($this->std->proprietarioObra->cnpj)) {
+            $doc = $this->xml->createElement('cnpj', $this->std->proprietarioObra->cnpj);
+            $propObra->appendChild($doc);
+        }
 
         $alvara->appendChild($propObra);
+
+        $this->infoAdicionais($infoAdicionais, $this->std->infoAdicionais);
+
         $alvara->appendChild($infoAdicionais);
 
         $this->xml->save("{$this->fileName}.xml");
@@ -119,7 +126,7 @@ class Alvara extends Base
         $node->appendChild($respExecObra);
     }
 
-    private function endObra(\DOMNode $node, \Stdclass $std)
+    private function endObra(\DOMNode $node, \stdClass $std)
     {
         $endereco = $this->xml->createElement('enderecoObra');
         $cep = $this->xml->createElement('cep', $std->cep);
@@ -137,5 +144,75 @@ class Alvara extends Base
         $endereco->appendChild($bairro);
 
         $node->appendChild($endereco);
+    }
+
+    private function infoAdicionais(\DOMNode $node, \stdClass $std)
+    {
+        $situacao = $this->xml->createElement('situacao', $std->situacao);
+        $classe = $this->xml->createElement('classe', $std->classe);
+        $numeroProcesso = $this->xml->createElement('numeroProcesso', $std->numeroProcesso);
+
+        $responsavelTecnico = $this->xml->createElement('responsavelTecnico');
+        $engenheiro = $this->xml->createElement('engenheiro');
+        $arquiteto = $this->xml->createElement('arquiteto');
+        if (isset($std->responsavelTecnico)) {
+            if (isset($std->responsavelTecnico->engenheiro)) {
+                $engRT = $std->responsavelTecnico->engenheiro;
+                $engenheiroNome = $this->xml->createElement('nome', $engRT->nome);
+                $engenheiroCrea = $this->xml->createElement('crea', $engRT->crea);
+                $engenheiroArt = $this->xml->createElement('art', $engRT->art);
+                $engenheiro->appendChild($engenheiroNome);
+                $engenheiro->appendChild($engenheiroCrea);
+                $engenheiro->appendChild($engenheiroArt);
+            }
+            if (isset($std->responsavelTecnico->arquiteto)) {
+                $arqRT = $std->responsavelTecnico->arquiteto;
+                $arquitetoNome = $this->xml->createElement('nome', $arqRT->nome);
+                $arquitetoCrea = $this->xml->createElement('cau', $arqRT->cau);
+                $arquitetoArt = $this->xml->createElement('rrt', $arqRT->rrt);
+                $arquiteto->appendChild($arquitetoNome);
+                $arquiteto->appendChild($arquitetoCrea);
+                $arquiteto->appendChild($arquitetoArt);
+            }
+        }
+        $responsavelTecnico->appendChild($engenheiro);
+        $responsavelTecnico->appendChild($arquiteto);
+
+        $responsavelProjeto = $this->xml->createElement('responsavelProjeto');
+        $engenheiroProjeto = $this->xml->createElement('engenheiro');
+        $arquitetoProjeto = $this->xml->createElement('arquiteto');
+        if (isset($std->responsavelProjeto)) {
+            if (isset($std->responsavelProjeto->engenheiro)) {
+                $engP = $std->responsavelProjeto->engenheiro;
+                $engenheiroProjetoNome = $this->xml->createElement('nome', $engP->nome);
+                $engenheiroProjetoCrea = $this->xml->createElement('crea', $engP->crea);
+                $engenheiroProjetoArt = $this->xml->createElement('art', $engP->art);
+                $engenheiroProjeto->appendChild($engenheiroProjetoNome);
+                $engenheiroProjeto->appendChild($engenheiroProjetoCrea);
+                $engenheiroProjeto->appendChild($engenheiroProjetoArt);
+            }
+            if (isset($std->responsavelProjeto->arquiteto)) {
+                $arqP = $std->responsavelProjeto->arquiteto;
+                $arquitetoProjetoNome = $this->xml->createElement('nome', $arqP->nome);
+                $arquitetoProjetoCrea = $this->xml->createElement('cau', $arqP->cau);
+                $arquitetoProjetoArt = $this->xml->createElement('rrt', $arqP->rrt);
+                $arquitetoProjeto->appendChild($arquitetoProjetoNome);
+                $arquitetoProjeto->appendChild($arquitetoProjetoCrea);
+                $arquitetoProjeto->appendChild($arquitetoProjetoArt);
+            }
+        }
+        $responsavelProjeto->appendChild($engenheiroProjeto);
+        $responsavelProjeto->appendChild($arquitetoProjeto);
+
+        $especificacao = $this->xml->createElement('especificacao', $std->especificacao);
+        $observacao = $this->xml->createElement('observacao', $std->observacao);
+
+        $node->appendChild($situacao);
+        $node->appendChild($classe);
+        $node->appendChild($numeroProcesso);
+        $node->appendChild($responsavelTecnico);
+        $node->appendChild($responsavelProjeto);
+        $node->appendChild($especificacao);
+        $node->appendChild($observacao);
     }
 }

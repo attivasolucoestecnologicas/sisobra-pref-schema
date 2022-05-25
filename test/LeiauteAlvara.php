@@ -2,7 +2,7 @@
 
 require_once '../vendor/autoload.php';
 
-use Attiva\SisObraXml\Alvara;
+use Attiva\SisObraXML\Alvara;
 
 $std = new stdClass;
 

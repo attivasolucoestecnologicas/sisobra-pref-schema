@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sisobraPref Id="123">
+    <versao>1.0.1</versao>
+    <infHabitese>
+        <tipoDocumento>alvara</tipoDocumento>
+        <numero>12</numero>
+        <situacao>reativado</situacao>
+        <numeroProtocolo>21322</numeroProtocolo>
+        <ano>2022</ano>
+        <mes>06</mes>
+    </infHabitese>
+</sisobraPref>

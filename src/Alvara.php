@@ -1,6 +1,6 @@
 <?php
 
-namespace Attiva\SisObraXml;
+namespace Attiva\SisObraXML;
 
 class Alvara extends Base
 {

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Attiva\SisObraXml;
+namespace Attiva\SisObraXML;
 
 
 abstract class Base

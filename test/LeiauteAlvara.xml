@@ -9,9 +9,6 @@
         <dataInicioObra>2022-05-15</dataInicioObra>
         <dataFinalObra>2022-05-15</dataFinalObra>
         <tipoAlvara>A</tipoAlvara>
-        <responsavelExecObra>
-            <cnpj>11111111111222</cnpj>
-        </responsavelExecObra>
         <enderecoObra>
             <cep>55555555</cep>
             <tipoLogradouro>rua</tipoLogradouro>
@@ -25,39 +22,5 @@
             <areaPrincipal>1|100</areaPrincipal>
             <areaComplementar>0|100</areaComplementar>
         </area>
-        <proprietarioObra>
-            <cpf>12345678901</cpf>
-        </proprietarioObra>
-        <infoAdicionais>
-            <situacao>teste</situacao>
-            <classe>teste</classe>
-            <numeroProcesso>123456</numeroProcesso>
-            <responsavelTecnico>
-                <engenheiro>
-                    <nome>josé</nome>
-                    <crea>1234</crea>
-                    <art>1234</art>
-                </engenheiro>
-                <arquiteto>
-                    <nome>maria</nome>
-                    <cau>123</cau>
-                    <rrt>123</rrt>
-                </arquiteto>
-            </responsavelTecnico>
-            <responsavelProjeto>
-                <engenheiro>
-                    <nome>pedro</nome>
-                    <crea>4321</crea>
-                    <art>5432</art>
-                </engenheiro>
-                <arquiteto>
-                    <nome>araújo</nome>
-                    <cau>7564</cau>
-                    <rrt>2325</rrt>
-                </arquiteto>
-            </responsavelProjeto>
-            <especificacao>teste</especificacao>
-            <observacao>teste</observacao>
-        </infoAdicionais>
     </infAlvara>
 </sisobraPref>

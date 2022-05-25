@@ -17,72 +17,79 @@ class Alvara extends Base
     {
         $pai = $this->xml->createElement('sisobraPref');
         $this->xml->appendChild($pai);
-
+//
         $versao = $this->xml->createElement('versao', '1.0.1');
         $pai->appendChild($versao);
 
-        $alvara = $this->xml->createElement('infAlvara');
-        $pai->appendChild($alvara);
+        $alvara = new \Attiva\SisObraXML\Factory\Alvara($this->std);
 
-        $nAlvara = $this->xml->createElement('numeroAlvara', $this->std->numeroAlvara);
-        $nProtocoloAnt = $this->xml->createElement('numeroProtocoloAnterior', $this->std->numeroProtocoloAnterior);
-        $nomeObra = $this->xml->createElement('nomeObra', $this->std->nomeObra);
-        $dtAlvara = $this->xml->createElement('dataAlvara', $this->std->dataAlvara);
-        $dtInicioObra = $this->xml->createElement('dataInicioObra', $this->std->dataInicioObra);
-        $dtFinalObra = $this->xml->createElement('dataFinalObra', $this->std->dataFinalObra);
-        $tpAlvara = $this->xml->createElement('tipoAlvara', $this->std->tipoAlvara);
+        $xml  = $this->xml->importNode($alvara->xml(), true);
 
-        // SELECT
+//        $alvara->xml()->save($this->fileName);
 
-        $valUndMedida = null;
-        $area = null;
+        $pai->appendChild($xml);
 
-        $undMedida = $this->xml->createElement('unidadeMedida', $this->std->unidadeMedida->valor);
-        if ($this->std->unidadeMedida->select == 'valorUnidadeMedida') {
-            $valUndMedida = $this->xml->createElement('valorUnidadeMedida', $this->std->unidadeMedida->valor_unidade_medida);
-        } elseif ($this->std->unidadeMedida->select == 'area') {
-            $area = $this->xml->createElement('area');
-            $areaPrincipal = $this->xml->createElement('areaPrincipal', $this->std->unidadeMedida->area_principal);
-            $areaComplementar = $this->xml->createElement('areaComplementar', $this->std->unidadeMedida->area_complementar);
-            $area->appendChild($areaPrincipal);
-            $area->appendChild($areaComplementar);
-        }
-        // FIM SELECT
-
-        $propObra = $this->xml->createElement('proprietarioObra');
-        $infoAdicionais = $this->xml->createElement('infoAdicionais');
-
-        $alvara->appendChild($nAlvara);
-        $alvara->appendChild($nProtocoloAnt);
-        $alvara->appendChild($nomeObra);
-        $alvara->appendChild($dtAlvara);
-        $alvara->appendChild($dtInicioObra);
-        $alvara->appendChild($dtFinalObra);
-        $alvara->appendChild($tpAlvara);
-        $this->responsavelObra($alvara, 'dono_da_obra', '11111111111222');
-        $this->endObra($alvara, $this->std->endereco);
-        $alvara->appendChild($undMedida);
-
-        if ($this->std->unidadeMedida->select == 'valorUnidadeMedida') {
-            $alvara->appendChild($valUndMedida);
-        } elseif ($this->std->unidadeMedida->select == 'area') {
-            $alvara->appendChild($area);
-        }
-
-        if (isset($this->std->proprietarioObra->cpf)) {
-            $doc = $this->xml->createElement('cpf', $this->std->proprietarioObra->cpf);
-            $propObra->appendChild($doc);
-        } elseif (isset($this->std->proprietarioObra->cnpj)) {
-            $doc = $this->xml->createElement('cnpj', $this->std->proprietarioObra->cnpj);
-            $propObra->appendChild($doc);
-        }
-
-        $alvara->appendChild($propObra);
-
-        $this->infoAdicionais($infoAdicionais, $this->std->infoAdicionais);
-
-        $alvara->appendChild($infoAdicionais);
-
+//        $alvara = $this->xml->createElement('infAlvara');
+//        $pai->appendChild($alvara);
+//
+//        $nAlvara = $this->xml->createElement('numeroAlvara', $this->std->numeroAlvara);
+//        $nProtocoloAnt = $this->xml->createElement('numeroProtocoloAnterior', $this->std->numeroProtocoloAnterior);
+//        $nomeObra = $this->xml->createElement('nomeObra', $this->std->nomeObra);
+//        $dtAlvara = $this->xml->createElement('dataAlvara', $this->std->dataAlvara);
+//        $dtInicioObra = $this->xml->createElement('dataInicioObra', $this->std->dataInicioObra);
+//        $dtFinalObra = $this->xml->createElement('dataFinalObra', $this->std->dataFinalObra);
+//        $tpAlvara = $this->xml->createElement('tipoAlvara', $this->std->tipoAlvara);
+//
+//        // SELECT
+//
+//        $valUndMedida = null;
+//        $area = null;
+//
+//        $undMedida = $this->xml->createElement('unidadeMedida', $this->std->unidadeMedida->valor);
+//        if ($this->std->unidadeMedida->select == 'valorUnidadeMedida') {
+//            $valUndMedida = $this->xml->createElement('valorUnidadeMedida', $this->std->unidadeMedida->valor_unidade_medida);
+//        } elseif ($this->std->unidadeMedida->select == 'area') {
+//            $area = $this->xml->createElement('area');
+//            $areaPrincipal = $this->xml->createElement('areaPrincipal', $this->std->unidadeMedida->area_principal);
+//            $areaComplementar = $this->xml->createElement('areaComplementar', $this->std->unidadeMedida->area_complementar);
+//            $area->appendChild($areaPrincipal);
+//            $area->appendChild($areaComplementar);
+//        }
+//        // FIM SELECT
+//
+//        $propObra = $this->xml->createElement('proprietarioObra');
+//        $infoAdicionais = $this->xml->createElement('infoAdicionais');
+//
+//        $alvara->appendChild($nAlvara);
+//        $alvara->appendChild($nProtocoloAnt);
+//        $alvara->appendChild($nomeObra);
+//        $alvara->appendChild($dtAlvara);
+//        $alvara->appendChild($dtInicioObra);
+//        $alvara->appendChild($dtFinalObra);
+//        $alvara->appendChild($tpAlvara);
+//        $this->responsavelObra($alvara, 'dono_da_obra', '11111111111222');
+//        $this->endObra($alvara, $this->std->endereco);
+//        $alvara->appendChild($undMedida);
+//
+//        if ($this->std->unidadeMedida->select == 'valorUnidadeMedida') {
+//            $alvara->appendChild($valUndMedida);
+//        } elseif ($this->std->unidadeMedida->select == 'area') {
+//            $alvara->appendChild($area);
+//        }
+//
+//        if (isset($this->std->proprietarioObra->cpf)) {
+//            $doc = $this->xml->createElement('cpf', $this->std->proprietarioObra->cpf);
+//            $propObra->appendChild($doc);
+//        } elseif (isset($this->std->proprietarioObra->cnpj)) {
+//            $doc = $this->xml->createElement('cnpj', $this->std->proprietarioObra->cnpj);
+//            $propObra->appendChild($doc);
+//        }
+//
+//        $alvara->appendChild($propObra);
+//
+//        $this->infoAdicionais($infoAdicionais, $this->std->infoAdicionais);
+//
+//        $alvara->appendChild($infoAdicionais);
         $this->xml->save("{$this->fileName}.xml");
     }
 

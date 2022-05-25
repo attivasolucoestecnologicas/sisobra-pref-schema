@@ -17,45 +17,12 @@ class Alvara extends Base
     {
         $pai = $this->xml->createElement('sisobraPref');
         $this->xml->appendChild($pai);
-//
         $versao = $this->xml->createElement('versao', '1.0.1');
         $pai->appendChild($versao);
-
         $alvara = new \Attiva\SisObraXML\Factory\Alvara($this->std);
-
-        $xml  = $this->xml->importNode($alvara->xml(), true);
-
-//        $alvara->xml()->save($this->fileName);
+        $xml = $this->xml->importNode($alvara->xml(), true);
 
         $pai->appendChild($xml);
-
-//        $alvara = $this->xml->createElement('infAlvara');
-//        $pai->appendChild($alvara);
-//
-//        $nAlvara = $this->xml->createElement('numeroAlvara', $this->std->numeroAlvara);
-//        $nProtocoloAnt = $this->xml->createElement('numeroProtocoloAnterior', $this->std->numeroProtocoloAnterior);
-//        $nomeObra = $this->xml->createElement('nomeObra', $this->std->nomeObra);
-//        $dtAlvara = $this->xml->createElement('dataAlvara', $this->std->dataAlvara);
-//        $dtInicioObra = $this->xml->createElement('dataInicioObra', $this->std->dataInicioObra);
-//        $dtFinalObra = $this->xml->createElement('dataFinalObra', $this->std->dataFinalObra);
-//        $tpAlvara = $this->xml->createElement('tipoAlvara', $this->std->tipoAlvara);
-//
-//        // SELECT
-//
-//        $valUndMedida = null;
-//        $area = null;
-//
-//        $undMedida = $this->xml->createElement('unidadeMedida', $this->std->unidadeMedida->valor);
-//        if ($this->std->unidadeMedida->select == 'valorUnidadeMedida') {
-//            $valUndMedida = $this->xml->createElement('valorUnidadeMedida', $this->std->unidadeMedida->valor_unidade_medida);
-//        } elseif ($this->std->unidadeMedida->select == 'area') {
-//            $area = $this->xml->createElement('area');
-//            $areaPrincipal = $this->xml->createElement('areaPrincipal', $this->std->unidadeMedida->area_principal);
-//            $areaComplementar = $this->xml->createElement('areaComplementar', $this->std->unidadeMedida->area_complementar);
-//            $area->appendChild($areaPrincipal);
-//            $area->appendChild($areaComplementar);
-//        }
-//        // FIM SELECT
 //
 //        $propObra = $this->xml->createElement('proprietarioObra');
 //        $infoAdicionais = $this->xml->createElement('infoAdicionais');
@@ -131,26 +98,6 @@ class Alvara extends Base
             $respExecObra = $this->xml->createElement('responsavelExecObra');
         }
         $node->appendChild($respExecObra);
-    }
-
-    private function endObra(\DOMNode $node, \stdClass $std)
-    {
-        $endereco = $this->xml->createElement('enderecoObra');
-        $cep = $this->xml->createElement('cep', $std->cep);
-        $tipoLogradouro = $this->xml->createElement('tipoLogradouro', $std->tipo_logradouro);
-        $logradouro = $this->xml->createElement('logradouro', $std->logradouro);
-        $numero = $this->xml->createElement('numero', $std->numero);
-        $complemento = $this->xml->createElement('complemento', $std->complemento);
-        $bairro = $this->xml->createElement('bairro', $std->bairro);
-
-        $endereco->appendChild($cep);
-        $endereco->appendChild($tipoLogradouro);
-        $endereco->appendChild($logradouro);
-        $endereco->appendChild($numero);
-        $endereco->appendChild($complemento);
-        $endereco->appendChild($bairro);
-
-        $node->appendChild($endereco);
     }
 
     private function infoAdicionais(\DOMNode $node, \stdClass $std)

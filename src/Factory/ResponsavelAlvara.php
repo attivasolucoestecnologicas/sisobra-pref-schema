@@ -4,17 +4,11 @@
 namespace Attiva\SisObraXML\Factory;
 
 
-class ResponsavelAlvara
+use Attiva\SisObraXML\Abstracts\Base;
+use Attiva\SisObraXML\Interfaces\Xml;
+
+class ResponsavelAlvara extends Base implements Xml
 {
-    private $std;
-    private $xml;
-
-    public function __construct(\stdClass $std)
-    {
-        $this->std = $std;
-        $this->xml = new \DOMDocument();
-    }
-
     public function xml()
     {
         $xml = $this->xml->createElement('responsavelTecnico');

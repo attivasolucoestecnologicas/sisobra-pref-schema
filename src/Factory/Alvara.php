@@ -2,17 +2,11 @@
 
 namespace Attiva\SisObraXML\Factory;
 
-class Alvara
+use Attiva\SisObraXML\Abstracts\Base;
+use Attiva\SisObraXML\Interfaces\Xml;
+
+class Alvara extends Base implements Xml
 {
-    private $std;
-    private $xml;
-
-    public function __construct(\stdClass $std)
-    {
-        $this->std = $std;
-        $this->xml = new \DOMDocument();
-    }
-
     public function xml()
     {
         $numeroAlvara = $this->xml->createElement('numeroAlvara', $this->std->numeroAlvara);

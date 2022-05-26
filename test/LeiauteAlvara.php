@@ -1,9 +1,5 @@
 <?php
 
-require_once '../vendor/autoload.php';
-
-use Attiva\SisObraXML\Alvara;
-
 $std = new stdClass;
 
 $std->numeroAlvara = '1111';
@@ -62,6 +58,4 @@ $std->infoAdicionais->responsavelProjeto->arquiteto->rrt = '2325';
 $std->infoAdicionais->especificacao = 'teste';
 $std->infoAdicionais->observacao = 'teste';
 
-$classe = new Alvara($std);
-
-$classe->processar();
+return $std;

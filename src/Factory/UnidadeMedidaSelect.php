@@ -3,17 +3,11 @@
 
 namespace Attiva\SisObraXML\Factory;
 
-class UnidadeMedidaSelect
+use Attiva\SisObraXML\Abstracts\Base;
+use Attiva\SisObraXML\Interfaces\Xml;
+
+class UnidadeMedidaSelect extends Base implements Xml
 {
-    private $std;
-    private $xml;
-
-    public function __construct(\stdClass $std)
-    {
-        $this->std = $std;
-        $this->xml = new \DOMDocument();
-    }
-
     public function xml()
     {
         return $this->select($this->std->select);
@@ -26,7 +20,7 @@ class UnidadeMedidaSelect
         } elseif ($select == 'valorUnidadeMedida') {
             return $this->unidadeMedida();
         }
-        return null;
+        return new \DOMElement('');
     }
 
     private function area()

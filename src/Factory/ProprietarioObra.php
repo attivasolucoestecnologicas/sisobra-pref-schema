@@ -2,17 +2,11 @@
 
 namespace Attiva\SisObraXML\Factory;
 
-class ProprietarioObra
+use Attiva\SisObraXML\Abstracts\Base;
+use Attiva\SisObraXML\Interfaces\Xml;
+
+class ProprietarioObra extends Base implements Xml
 {
-    private $std;
-    private $xml;
-
-    public function __construct(\stdClass $std)
-    {
-        $this->std = $std;
-        $this->xml = new \DOMDocument();
-    }
-
     public function xml()
     {
         $xml = new \DOMElement('cpf');

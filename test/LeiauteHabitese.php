@@ -1,9 +1,5 @@
 <?php
 
-require_once '../vendor/autoload.php';
-
-use Attiva\SisObraXML\Habitese;
-
 $std = new stdClass;
 
 $std->numeroHabitese = '1111';
@@ -24,5 +20,4 @@ $std->qtd_total_unidades_bloco = '5';
 $std->numeroAlvara = '12321';
 $std->dataAlvara = '2022-05-12';
 
-$classe = new Habitese($std);
-$classe->processar();
+return $std;

@@ -8,9 +8,9 @@ $alteracao = require_once './LeiauteAlteraSituacao.php';
 
 $lote = new \Attiva\SisObraXML\LoteAlvaraHabitese();
 
-$lote->alvara = [$alvara];
-$lote->habitese = [$habitese];
-$lote->alteracao = [$alteracao];
+$lote->alvara = [$alvara, $alvara, $alvara, $alvara];
+$lote->habitese = [$habitese, $habitese, $habitese, $habitese];
+$lote->alteracao = [$alteracao, $alteracao, $alteracao, $alteracao];
 
 $lote->xml()->save();
 

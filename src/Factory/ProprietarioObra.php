@@ -5,20 +5,22 @@ namespace Attiva\SisObraXML\Factory;
 class ProprietarioObra
 {
     private $std;
+    private $xml;
 
     public function __construct(\stdClass $std)
     {
         $this->std = $std;
+        $this->xml = new \DOMDocument();
     }
 
-    public function render()
+    public function xml()
     {
-        $proprietario = new \stdClass;
+        $xml = new \DOMElement('cpf');
         if (isset($this->std->cpf)) {
-            $proprietario->cpf = $this->std->cpf;
+            $xml = $this->xml->createElement('cpf', $this->std->cpf);
         } elseif (isset($this->std->cnpj)) {
-            $proprietario->cnpj = $this->std->cnpj;
+            $xml = $this->xml->createElement('cnpj', $this->std->cnpj);
         }
-        return $proprietario;
+        return $xml;
     }
 }

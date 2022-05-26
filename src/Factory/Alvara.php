@@ -6,10 +6,6 @@ class Alvara
 {
     private $std;
     private $xml;
-    private $endereco;
-    private $undMedida;
-    private $proprietario;
-    private $infoAdicionais;
 
     public function __construct(\stdClass $std)
     {
@@ -30,8 +26,8 @@ class Alvara
         $endereco = new EnderecoAlvara($this->std->endereco);
         $undMedida = new UnidadeMedida($this->std->unidadeMedida);
         $undMedidaSelect = new UnidadeMedidaSelect($this->std->unidadeMedida);
-//        $this->proprietario = new ProprietarioObra($this->std->proprietarioObra);
-//        $this->infoAdicionais = new InformacoesAdicionais($this->std->infoAdicionais);
+        $proprietario = new ProprietarioObra($this->std->proprietarioObra);
+        $infoAdicionais = new InformacoesAdicionais($this->std->infoAdicionais);
 
 
         $xml = $this->xml->createElement('infAlvara');
@@ -45,23 +41,9 @@ class Alvara
         $xml->appendChild($this->xml->importNode($endereco->xml(), true));
         $xml->appendChild($this->xml->importNode($undMedida->xml(), true));
         $xml->appendChild($this->xml->importNode($undMedidaSelect->xml(), true));
+        $xml->appendChild($this->xml->importNode($proprietario->xml(), true));
+        $xml->appendChild($this->xml->importNode($infoAdicionais->xml(), true));
 
         return $xml;
     }
-
-//    public function save($fileName)
-//    {
-//        $this->xml->save("{$fileName}.xml");
-//    }
-
-//    public function xml()
-//    {
-
-
-//        $alvara->appendChild($this->undMedida->undMedida);
-//        $alvara->appendChild($this->undMedida->select);
-//        $alvara->appendChild($this->proprietario);
-//        $alvara->appendChild($this->infoAdicionais);
-//        return $alvara;
-//    }
 }

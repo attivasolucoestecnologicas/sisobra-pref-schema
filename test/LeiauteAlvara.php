@@ -10,6 +10,14 @@ $std->dataInicioObra = '2022-05-15';
 $std->dataFinalObra = '2022-05-15';
 $std->tipoAlvara = 'A';
 
+$std->responsavelExecObra = new stdClass;
+$std->responsavelExecObra->select = 'proprietario_do_imovel';
+$std->responsavelExecObra->proprietario_do_imovel = 'José da Silva';
+$std->responsavelExecObra->cnpjConsorcio = '11111111111111';
+$std->responsavelExecObra->cnpjEmpresaLiderConsorcio = '22222222222222';
+$std->responsavelExecObra->cpf = '11111111111';
+$std->responsavelExecObra->cnpj = '22222222222222';
+
 $std->endereco = new stdClass;
 $std->endereco->cep = '55555555';
 $std->endereco->tipo_logradouro = 'rua';

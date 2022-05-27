@@ -17,6 +17,7 @@ class Alvara extends Base implements Xml
         $dataFinalObra = $this->xml->createElement('dataFinalObra', $this->std->dataFinalObra);
         $tipoAlvara = $this->xml->createElement('tipoAlvara', $this->std->tipoAlvara);
 
+        $responsavelExecObra = new ResponsavelExecObra($this->std->responsavelExecObra);
         $endereco = new EnderecoAlvara($this->std->endereco);
         $undMedida = new UnidadeMedida($this->std->unidadeMedida);
         $undMedidaSelect = new UnidadeMedidaSelect($this->std->unidadeMedida);
@@ -32,6 +33,7 @@ class Alvara extends Base implements Xml
         $xml->appendChild($dataInicioObra);
         $xml->appendChild($dataFinalObra);
         $xml->appendChild($tipoAlvara);
+        $xml->appendChild($this->xml->importNode($responsavelExecObra->xml(), true));
         $xml->appendChild($this->xml->importNode($endereco->xml(), true));
         $xml->appendChild($this->xml->importNode($undMedida->xml(), true));
         $xml->appendChild($this->xml->importNode($undMedidaSelect->xml(), true));

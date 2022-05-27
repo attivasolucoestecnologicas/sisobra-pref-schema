@@ -10,6 +10,9 @@
             <dataInicioObra>2022-05-15</dataInicioObra>
             <dataFinalObra>2022-05-15</dataFinalObra>
             <tipoAlvara>A</tipoAlvara>
+            <responsavelExecObra>
+                <proprietario_do_imovel>José da Silva</proprietario_do_imovel>
+            </responsavelExecObra>
             <enderecoObra>
                 <cep>55555555</cep>
                 <tipoLogradouro>rua</tipoLogradouro>
@@ -64,6 +67,9 @@
             <dataInicioObra>2022-05-15</dataInicioObra>
             <dataFinalObra>2022-05-15</dataFinalObra>
             <tipoAlvara>A</tipoAlvara>
+            <responsavelExecObra>
+                <proprietario_do_imovel>José da Silva</proprietario_do_imovel>
+            </responsavelExecObra>
             <enderecoObra>
                 <cep>55555555</cep>
                 <tipoLogradouro>rua</tipoLogradouro>
@@ -118,6 +124,9 @@
             <dataInicioObra>2022-05-15</dataInicioObra>
             <dataFinalObra>2022-05-15</dataFinalObra>
             <tipoAlvara>A</tipoAlvara>
+            <responsavelExecObra>
+                <proprietario_do_imovel>José da Silva</proprietario_do_imovel>
+            </responsavelExecObra>
             <enderecoObra>
                 <cep>55555555</cep>
                 <tipoLogradouro>rua</tipoLogradouro>
@@ -172,6 +181,9 @@
             <dataInicioObra>2022-05-15</dataInicioObra>
             <dataFinalObra>2022-05-15</dataFinalObra>
             <tipoAlvara>A</tipoAlvara>
+            <responsavelExecObra>
+                <proprietario_do_imovel>José da Silva</proprietario_do_imovel>
+            </responsavelExecObra>
             <enderecoObra>
                 <cep>55555555</cep>
                 <tipoLogradouro>rua</tipoLogradouro>

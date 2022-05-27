@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--Created with Liquid XML Studio - FREE Community Edition 7.1.6.1440 (http://www.liquid-technologies.com)-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:include schemaLocation="LeiauteAlvara.xsd" />
+  <xs:include schemaLocation="LeiauteHabitese.xsd" />
+  <xs:element name="retConsultaDocumento">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:choice>
+          <xs:element minOccurs="1" maxOccurs="1" name="Alvara" type="TAlvara">
+            <xs:annotation>
+              <xs:documentation>Alvará</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="Habitese" type="THabitese">
+            <xs:annotation>
+              <xs:documentation>Habitese</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:choice>
+	    <xs:element minOccurs="0" maxOccurs="1" name="codRetorno" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="descricao" type="xs:string" />
+      </xs:sequence>
+      <xs:attribute name="versao" use="required">
+        <xs:annotation>
+          <xs:documentation>Versão do schema</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:whiteSpace value="preserve" />
+            <xs:pattern value="1\.01" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
